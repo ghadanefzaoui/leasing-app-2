@@ -1,6 +1,4 @@
 # netlify.toml configuration file
 
 [build]
-  base = "/"
-  publish = "dist"
   command = "yarn install && yarn build" 
