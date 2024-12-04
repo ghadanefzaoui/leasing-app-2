@@ -158,21 +158,21 @@ return (
         <SectionContainer>
         <HeaderTitle> Our Links</HeaderTitle>
         <LinksList>
-        <ListItem><a href="#">Home</a></ListItem>
-        <ListItem><a href="#">About Us</a></ListItem>
-        <ListItem><a href="#">Stories</a></ListItem>
-        <ListItem><a href="#">Services</a></ListItem>
-        <ListItem><a href="#">Models</a></ListItem>
+        <ListItem><a href="/">Home</a></ListItem>
+        <ListItem><a href="/">About Us</a></ListItem>
+        <ListItem><a href="/">Stories</a></ListItem>
+        <ListItem><a href="/">Services</a></ListItem>
+        <ListItem><a href="/">Models</a></ListItem>
         </LinksList>
         </SectionContainer>
         <SectionContainer>
         <HeaderTitle> More</HeaderTitle>
         <LinksList>
-        <ListItem><a href="#">Home</a></ListItem>
-        <ListItem><a href="#">About Us</a></ListItem>
-        <ListItem><a href="#">Stories</a></ListItem>
-        <ListItem><a href="#">Services</a></ListItem>
-        <ListItem><a href="#">Terms &amp; Conditions</a></ListItem>
+        <ListItem><a href="/">Home</a></ListItem>
+        <ListItem><a href="/">About Us</a></ListItem>
+        <ListItem><a href="/">Stories</a></ListItem>
+        <ListItem><a href="/">Services</a></ListItem>
+        <ListItem><a href="/">Terms &amp; Conditions</a></ListItem>
         </LinksList>
         </SectionContainer>
         <SectionContainer>
