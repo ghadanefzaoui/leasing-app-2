@@ -1,0 +1,20 @@
+# netlify.toml configuration file
+
+[build]
+  base = "/"
+  publish = "dist"
+  command = "npm run build"
+
+[context.production.environment]
+  NODE_VERSION = "16"
+
+[[plugins]]
+  package = "@netlify/plugin-node-versions"
+  version = "2.0.0"
+
+[[plugins]]
+  package = "@netlify/plugin-cache"
+  version = "1.0.0"
+
+[build.environment]
+  PATH = "/opt/buildhome/.nvm/versions/node/v16.20.2/bin:/usr/local/bin:/usr/bin:/bin:/opt/buildhome/.local/bin"
