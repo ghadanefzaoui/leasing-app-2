@@ -30,6 +30,7 @@ const Image = styled.div`
 ${tw`
 h-6
 md:h-9
+ml-0
 `}
 img{
     width: auto;
@@ -40,7 +41,7 @@ export function Logo(props:  ILogoProps){
     const {color, bgColor} = props
     return (
         <LogoContainer>
-            <Image>
+            <Image className='ml-5'>
                 <img src={bgColor === 'dark' ? CarLogoDarkImg : CarLogoImg }/>
             </Image>
             <LogoText color={color || 'dark'}>RentIt.</LogoText>

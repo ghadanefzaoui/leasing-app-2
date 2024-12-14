@@ -1,3 +1,7 @@
+* {
+  font-family: 'Georgia', serif; /* Apply Georgia font globally */
+}
+
 .App {
   text-align: center;
 }

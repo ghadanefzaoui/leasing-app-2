@@ -16,6 +16,7 @@ width: 16.5em;
 min-height: 20.2em;
 max-height: 25.2em;
 box-shadow: 0 1.3px 15px -2px rgba(0,0,0,0.4);
+transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
 ${tw`
 flex 
 flex-col   
@@ -28,7 +29,11 @@ m-1
 sm:m-3  
 md:m-6  
 `}
-`
+ &:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-10px); /* Lift the card upwards */
+  }
+`;
 
 const CarThumbNail = styled.div`
 width: 100%;

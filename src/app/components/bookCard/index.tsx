@@ -14,6 +14,7 @@ import { SCREENS } from '../responsive'
 const CardContainer = styled.div`
 min-height: 4.3em;
 box-shadow: 0 1.3px 12px -3px rgba(0,0,0,0.4);
+animation: zoomIn 0.5s ease-out;
 ${tw`
 flex
 justify-center  

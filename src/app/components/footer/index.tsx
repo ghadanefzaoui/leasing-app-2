@@ -40,7 +40,7 @@ items-center
 justify-center  
 text-white   
 text-base   
-mr-2  
+mr-2 
 `}
 `
 
@@ -74,6 +74,7 @@ outline-none
 list-none  
 flex  
 flex-col  
+pl-0
 `}
 `
 
@@ -89,6 +90,7 @@ mb-3
     transition-all 
     hover:text-gray-200 
     `}
+    text-decoration: none;
 }
 `
 const SectionContainer = styled.div`
@@ -181,7 +183,7 @@ return (
                 <RedIcon>
                     <FontAwesomeIcon icon={faPhoneAlt}/>
                 </RedIcon>
-                <SmallText>+359-0039-233-43 </SmallText>
+                <SmallText>+33 6 61 80 97 85 </SmallText>
             </HorizontalContainer>
         </SectionContainer>
         <SectionContainer>

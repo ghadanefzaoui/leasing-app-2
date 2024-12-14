@@ -18,7 +18,7 @@ const NavItem = styled.li<{menu?: any}>`
     text-sm
     md:text-base
     text-black
-    font-medium
+    font-semibold
     mr-1
     md:mr-5
     cursor-pointer
@@ -35,6 +35,10 @@ const NavItem = styled.li<{menu?: any}>`
           focus:text-white
       `}
   `}
+  a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Ensures link uses parent text color */
+  }
 `;
 
 export function NavItems() {
@@ -54,7 +58,10 @@ export function NavItems() {
             <a href="#">Services</a>
           </NavItem>
           <NavItem menu >
-            <a href="#">Contact Us</a>
+            <a href="#">Contact</a>
+          </NavItem>
+          <NavItem menu >
+            <a href="#">Login</a>
           </NavItem>
         </ListContainer>
         </Menu>
@@ -72,7 +79,10 @@ export function NavItems() {
             <a href="#">Services</a>
           </NavItem>
           <NavItem >
-            <a href="#">Contact Us</a>
+            <a href="#">Contact</a>
+          </NavItem>
+          <NavItem >
+            <a href="#">Login</a>
           </NavItem>
         </ListContainer>
     );

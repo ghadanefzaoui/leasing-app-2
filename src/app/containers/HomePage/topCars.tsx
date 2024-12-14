@@ -51,49 +51,49 @@ export function TopCars() {
     const isMobile = useMediaQuery({maxWidth: SCREENS.sm})
     const [current, setCurrent] = useState(0)
     const testCar1: Icar = {
-        name: "Car 1",
-        mileage: "10k",
-        thumbnailSrc:"https://freepngimg.com/thumb/car/31510-9-car-transparent-background.png",
-        dailyPrice : 70, 
-        monthlyPrice: 15000,
+        name: "BMW M4",
+        mileage: "25k",
+        thumbnailSrc:"https://i.pinimg.com/originals/24/bb/e6/24bbe63026ae59fe39ae8a61d9fe5798.png",
+        dailyPrice : 250, 
+        monthlyPrice: 6000,
         gearType: "Auto",
         gas: "Petrol"
     }
     const testCar2: Icar = {
-        name: "Car 2",
-        mileage: "10k",
-        thumbnailSrc:"https://freepngimg.com/thumb/car/31510-9-car-transparent-background.png",
-        dailyPrice : 70, 
-        monthlyPrice: 15000,
+        name: "Tesla Model S",
+        mileage: "15k",
+        thumbnailSrc:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPvldPmZ60jqM0q3QRVll51b0d6xEi3SedGw&s",
+        dailyPrice : 300, 
+        monthlyPrice: 7000,
         gearType: "Auto",
-        gas: "Petrol"
+        gas: "Electric"
     }
     const testCar3: Icar = {
-        name: "Car 3",
-        mileage: "10k",
-        thumbnailSrc:"https://freepngimg.com/thumb/car/31510-9-car-transparent-background.png",
-        dailyPrice : 70, 
-        monthlyPrice: 15000,
+        name: "Mercedes-Benz S-Class",
+        mileage: "30k",
+        thumbnailSrc:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTltt7reqUsbz0OesaUQ7_Qd6tOuGzYz30YUg&s",
+        dailyPrice : 400, 
+        monthlyPrice: 10000,
         gearType: "Auto",
         gas: "Petrol"
     }
     const testCar4: Icar = {
-        name: "Car 4",
+        name: "Lamborghini Huracán",
         mileage: "10k",
-        thumbnailSrc:"https://freepngimg.com/thumb/car/31510-9-car-transparent-background.png",
-        dailyPrice : 70, 
-        monthlyPrice: 15000,
+        thumbnailSrc:"https://www.pngarts.com/files/3/Lamborghini-Huracan-Free-PNG-Image.png",
+        dailyPrice : 800, 
+        monthlyPrice: 20000,
         gearType: "Auto",
         gas: "Petrol"
     }
     const testCar5: Icar = {
-        name: "Car 5",
-        mileage: "10k",
-        thumbnailSrc:"https://freepngimg.com/thumb/car/31510-9-car-transparent-background.png",
-        dailyPrice : 70, 
-        monthlyPrice: 15000,
+        name: "Toyota Prius",
+        mileage: "50k",
+        thumbnailSrc:"https://images.dealer.com/ddc/vehicles/2020/Toyota/Prius%20Prime/Hatchback/perspective/front-left/0020_24.png",
+        dailyPrice : 60, 
+        monthlyPrice: 1500,
         gearType: "Auto",
-        gas: "Petrol"
+        gas: "Hybrid"
     }
 
     const cars = [
