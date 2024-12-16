@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import {useMediaQuery} from 'react-responsive'
 import styled from 'styled-components'
 import tw from 'twin.macro'
-import {SCREENS} from '../../components/responsive'
-import { Icar } from '../../../typings/car'
-import { Car } from '../../components/car'
+import {SCREENS} from '../../../components/responsive'
+import { Icar } from '../../../../typings/car'
+import { Car } from '../../../components/car'
 import Carousel, {Dots, slidesToShowPlugin} from '@brainhubeu/react-carousel'
 import '@brainhubeu/react-carousel/lib/style.css';
 
@@ -54,46 +54,41 @@ export function TopCars() {
         name: "BMW M4",
         mileage: "25k",
         thumbnailSrc:"https://i.pinimg.com/originals/24/bb/e6/24bbe63026ae59fe39ae8a61d9fe5798.png",
-        dailyPrice : 250, 
         monthlyPrice: 6000,
         gearType: "Auto",
-        gas: "Petrol"
+        gas: "Petrol",
     }
     const testCar2: Icar = {
         name: "Tesla Model S",
         mileage: "15k",
         thumbnailSrc:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPvldPmZ60jqM0q3QRVll51b0d6xEi3SedGw&s",
-        dailyPrice : 300, 
         monthlyPrice: 7000,
         gearType: "Auto",
-        gas: "Electric"
+        gas: "Electric",
     }
     const testCar3: Icar = {
         name: "Mercedes-Benz S-Class",
         mileage: "30k",
         thumbnailSrc:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTltt7reqUsbz0OesaUQ7_Qd6tOuGzYz30YUg&s",
-        dailyPrice : 400, 
         monthlyPrice: 10000,
         gearType: "Auto",
-        gas: "Petrol"
+        gas: "Petrol",
     }
     const testCar4: Icar = {
         name: "Lamborghini Huracán",
         mileage: "10k",
         thumbnailSrc:"https://www.pngarts.com/files/3/Lamborghini-Huracan-Free-PNG-Image.png",
-        dailyPrice : 800, 
         monthlyPrice: 20000,
         gearType: "Auto",
-        gas: "Petrol"
+        gas: "Petrol",
     }
     const testCar5: Icar = {
         name: "Toyota Prius",
         mileage: "50k",
         thumbnailSrc:"https://images.dealer.com/ddc/vehicles/2020/Toyota/Prius%20Prime/Hatchback/perspective/front-left/0020_24.png",
-        dailyPrice : 60, 
         monthlyPrice: 1500,
         gearType: "Auto",
-        gas: "Hybrid"
+        gas: "Hybrid",
     }
 
     const cars = [

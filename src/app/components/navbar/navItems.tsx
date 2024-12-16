@@ -1,10 +1,11 @@
 import React from "react";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import tw from "twin.macro";
-import {slide as Menu} from 'react-burger-menu'
-import {useMediaQuery} from 'react-responsive'
-import {SCREENS} from '../responsive'
+import { slide as Menu } from 'react-burger-menu';
+import { useMediaQuery } from 'react-responsive';
+import { SCREENS } from '../responsive';
 import menuStyles from "./menuStyles";
+import { Link } from "react-router-dom";
 
 const ListContainer = styled.ul`
   ${tw`
@@ -13,7 +14,7 @@ const ListContainer = styled.ul`
   `};
 `;
 
-const NavItem = styled.li<{menu?: any}>`
+const NavItem = styled.li<{ menu?: any }>`
   ${tw`
     text-sm
     md:text-base
@@ -27,13 +28,13 @@ const NavItem = styled.li<{menu?: any}>`
     ease-in-out
     hover:text-gray-700
   `};
-  ${({menu}) => menu && css`
-      ${tw`
-          text-white
-          text-xl
-          mb-3
-          focus:text-white
-      `}
+  ${({ menu }) => menu && css`
+    ${tw`
+      text-white
+      text-xl
+      mb-3
+      focus:text-white
+    `}
   `}
   a {
     text-decoration: none; /* Removes underline */
@@ -46,44 +47,45 @@ export function NavItems() {
     if(isMobile)
 
     return (
-        <Menu right styles={menuStyles}>
+      <Menu right styles={menuStyles}>
         <ListContainer>
-          <NavItem  menu >
-            <a href="#">Home</a>
+          <NavItem menu>
+            <Link to="/">Home</Link> {/* Use Link instead of anchor */}
           </NavItem>
-          <NavItem menu >
-            <a href="#">Cars</a>
+          <NavItem menu>
+            <Link to="/cars">Cars</Link> 
           </NavItem>
-          <NavItem menu >
-            <a href="#">Services</a>
+          <NavItem menu>
+            <Link to="/">Maintenance</Link> 
           </NavItem>
-          <NavItem menu >
-            <a href="#">Contact</a>
+          <NavItem menu>
+            <Link to="/">Contact</Link> 
           </NavItem>
-          <NavItem menu >
-            <a href="#">Login</a>
+          <NavItem menu>
+            <Link to="/">Login</Link> 
           </NavItem>
         </ListContainer>
-        </Menu>
+      </Menu>
     );
 
-    return (
-        <ListContainer>
-          <NavItem >
-            <a href="#">Home</a>
-          </NavItem>
-          <NavItem >
-            <a href="#">Cars</a>
-          </NavItem>
-          <NavItem >
-            <a href="#">Services</a>
-          </NavItem>
-          <NavItem >
-            <a href="#">Contact</a>
-          </NavItem>
-          <NavItem >
-            <a href="#">Login</a>
-          </NavItem>
-        </ListContainer>
-    );
+  // Desktop view with standard navigation
+  return (
+    <ListContainer>
+      <NavItem>
+        <Link to="/">Home</Link> {/* Use Link instead of anchor */}
+      </NavItem>
+      <NavItem>
+        <Link to="/cars">Cars</Link> 
+      </NavItem>
+      <NavItem>
+        <Link to="/maintenance">Maintenance</Link> 
+      </NavItem>
+      <NavItem>
+        <Link to="/">Contact</Link> 
+      </NavItem>
+      <NavItem>
+        <Link to="/">Login</Link> 
+      </NavItem>
+    </ListContainer>
+  );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { SCREENS } from '../../components/responsive';
+import { SCREENS } from '../../../components/responsive';
 
 const AboutUsContainer = styled.div`
   ${tw`
@@ -24,7 +24,6 @@ const AboutUsContainer = styled.div`
 `;
 
 const CarContainer = styled.div`
-  width: 100%; /* Default takes up full width */
   height: 15em;
 
   img {

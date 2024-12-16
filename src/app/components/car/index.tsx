@@ -70,16 +70,9 @@ font-thin
 `}
 `
 
-const DailyPrice = styled.h5`
-${tw`
-text-red-500
-text-sm  
-mr-3
-`}
-`
 const MonthlyPrice = styled.h5`
 ${tw`
-text-green-500
+text-gray-500
 text-sm  
 `}
 `
@@ -132,7 +125,7 @@ const RentButton = styled(Button)`
 
 
 export function Car(props: IcarProps) {
-    const {name, thumbnailSrc, dailyPrice, monthlyPrice, mileage, gearType, gas} = props;
+    const {name, thumbnailSrc, monthlyPrice, mileage, gearType, gas} = props;
     return (
         <CarContainer>
             <CarThumbNail>
@@ -140,8 +133,7 @@ export function Car(props: IcarProps) {
             </CarThumbNail>
                 <CarName>{name}</CarName>
                 <PricesContainer>
-                    <DailyPrice>Ugx.{dailyPrice}<SmallText>/day</SmallText></DailyPrice>
-                    <MonthlyPrice>Ugx.{monthlyPrice}<SmallText>/month</SmallText></MonthlyPrice>
+                    <MonthlyPrice>Leasing: {monthlyPrice}DT<SmallText>/month</SmallText></MonthlyPrice>
                 </PricesContainer>
                 <Separator/>
                 <CarDetailsContainer>
@@ -164,7 +156,7 @@ export function Car(props: IcarProps) {
                     <CarInfo>{gas}</CarInfo>
                 </CarDetail>
                 </CarDetailsContainer>
-                    <RentButton text="Rent Now"/>
+                    <RentButton text="Book Now"/>
         </CarContainer>
     )
 
