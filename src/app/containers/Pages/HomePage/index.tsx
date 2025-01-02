@@ -7,6 +7,7 @@ import { BookingSteps } from '../../bookingSteps';
 import { TopSection } from '../../topSection';
 import { AboutUs } from './aboutus';
 import { TopCars } from './topCars';
+import ServicesList from './servicesList';
 
 const PageContainer = styled.div`
 ${tw`
@@ -28,6 +29,7 @@ export default function HomePage() {
         <BookingSteps/>
         <AboutUs/>
         <TopCars/>
+        <ServicesList/>
     </PageContainer>
     )
 }
