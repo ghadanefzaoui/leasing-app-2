@@ -41,7 +41,6 @@ justify-content: center;
 
 img{
     width: auto; 
-    height: 100%  
 }
 aspect-ratio: 16/9; /* Maintains a consistent aspect ratio */
 `
