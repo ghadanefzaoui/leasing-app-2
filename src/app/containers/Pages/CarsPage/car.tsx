@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { Icar } from '../../../../typings/car';
 import { Button } from '../../../components/button';
-
+import { Link } from 'react-router-dom';
 
 interface IcarProps extends Icar {
 
@@ -124,6 +124,13 @@ const RentButton = styled(Button)`
  `}
 `
 
+const RentButtonLink = styled(Link)`
+ ${tw` 
+ w-full  
+ `}
+ text-decoration: none;
+`
+
 
 export function Car(props: IcarProps) {
     const {name, thumbnailSrc, monthlyPrice, mileage, gearType, gas} = props;
@@ -157,7 +164,7 @@ export function Car(props: IcarProps) {
                     <CarInfo>{gas}</CarInfo>
                 </CarDetail>
                 </CarDetailsContainer>
-                    <RentButton text="Book Now"/>
+                    <RentButtonLink to={`/cars/${name}`}><RentButton text="Book Now"/></RentButtonLink>
         </CarContainer>
     )
 

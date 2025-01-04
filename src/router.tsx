@@ -6,13 +6,14 @@ import Services from './app/containers/Pages/services/servicesPage';
 import Contact from './app/containers/Pages/ContactPage/contactPage';
 import Login from './app/containers/Pages/Registration/Login';
 import Signup from './app/containers/Pages/Registration/Registration';
-
+import CarDetails from './app/containers/Pages/CarsPage/carDetails';
 
 const RoutesConfig = () => {
   return (
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cars" element={<Cars />} />
+        <Route path="/cars/:slug" element={<CarDetails />} /> {/* Dynamic route */}
         <Route path="/services" element={<Services />} />
         <Route path='/contact' element={<Contact/>} />
         <Route path='/login' element={<Login/>} />
