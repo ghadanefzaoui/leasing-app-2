@@ -40,7 +40,7 @@ items-center
 justify-center  
 text-white   
 text-base   
-mr-2  
+mr-2 
 `}
 `
 
@@ -74,6 +74,7 @@ outline-none
 list-none  
 flex  
 flex-col  
+pl-0
 `}
 `
 
@@ -89,6 +90,7 @@ mb-3
     transition-all 
     hover:text-gray-200 
     `}
+    text-decoration: none;
 }
 `
 const SectionContainer = styled.div`
@@ -160,18 +162,17 @@ return (
         <LinksList>
         <ListItem><a href="/">Home</a></ListItem>
         <ListItem><a href="/">About Us</a></ListItem>
-        <ListItem><a href="/">Stories</a></ListItem>
-        <ListItem><a href="/">Services</a></ListItem>
-        <ListItem><a href="/">Models</a></ListItem>
+        <ListItem><a href="/services">Services</a></ListItem>
+        <ListItem><a href="/cars">Cars</a></ListItem>
+        <ListItem><a href="/contact">Contact Us</a></ListItem>
         </LinksList>
         </SectionContainer>
         <SectionContainer>
         <HeaderTitle> More</HeaderTitle>
         <LinksList>
-        <ListItem><a href="/">Home</a></ListItem>
-        <ListItem><a href="/">About Us</a></ListItem>
-        <ListItem><a href="/">Stories</a></ListItem>
-        <ListItem><a href="/">Services</a></ListItem>
+        <ListItem><a href="/">Cookie Policy</a></ListItem>
+        <ListItem><a href="/">Privacy Policy</a></ListItem>
+        <ListItem><a href="/">FAQ</a></ListItem>
         <ListItem><a href="/">Terms &amp; Conditions</a></ListItem>
         </LinksList>
         </SectionContainer>
@@ -181,7 +182,7 @@ return (
                 <RedIcon>
                     <FontAwesomeIcon icon={faPhoneAlt}/>
                 </RedIcon>
-                <SmallText>+359-0039-233-43 </SmallText>
+                <SmallText>+216 25 48 78 96</SmallText>
             </HorizontalContainer>
         </SectionContainer>
         <SectionContainer>

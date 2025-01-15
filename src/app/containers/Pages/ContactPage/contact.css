@@ -1,0 +1,47 @@
+.social__link-icon {
+    text-decoration: none;
+  
+    color: rgba(239,68,68,1);
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+  
+  .contact__btn {
+    padding: 7px 15px;
+    background: rgba(239,68,68,1);
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+  }
+  
+  .style-section {
+    background: linear-gradient(rgba(102, 104, 120, 0.6), rgba(23, 24, 26, 0.6)),
+      url("../../../../assets/images/contact.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 80px 0px;
+  }
+
+  .section__description {
+    color: #7c8a97;
+    font-size: 0.9rem;
+    line-height: 30px;
+  }
+
+  .textarea {
+    width: 100%;
+    padding: 10px 15px;
+    color: #7c8a97;
+    border: 1px solid #7c8a972a;
+    border-radius: 4px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .contact__btn {
+      margin-bottom: 40px;
+      font-size: 0.8rem;
+    }
+  }
+  

@@ -1,10 +1,11 @@
 import React from "react";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import tw from "twin.macro";
-import {slide as Menu} from 'react-burger-menu'
-import {useMediaQuery} from 'react-responsive'
-import {SCREENS} from '../responsive'
+import { slide as Menu } from 'react-burger-menu';
+import { useMediaQuery } from 'react-responsive';
+import { SCREENS } from '../responsive';
 import menuStyles from "./menuStyles";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation hook to access the current location
 
 const ListContainer = styled.ul`
   ${tw`
@@ -13,67 +14,86 @@ const ListContainer = styled.ul`
   `};
 `;
 
-const NavItem = styled.li<{menu?: any}>`
+const NavItem = styled.li<{ menu?: any, isActive: boolean }>`
   ${tw`
     text-sm
     md:text-base
     text-black
-    font-medium
+    font-semibold
     mr-1
     md:mr-5
     cursor-pointer
     transition
     duration-300
     ease-in-out
-    hover:text-gray-700
   `};
-  ${({menu}) => menu && css`
-      ${tw`
-          text-white
-          text-xl
-          mb-3
-          focus:text-white
-      `}
+  ${({ menu }) => menu && css`
+    ${tw`
+      text-white
+      text-xl
+      mb-3
+      focus:text-white
+    `};
   `}
+  
+  ${({ isActive }) => isActive && css`
+    color: rgba(239, 68, 68, 1); /* Apply active color */
+  `}
+  
+  a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Ensures link uses parent text color */
+    &:hover {
+      color: inherit; /* Prevent hover color change */
+    }
+  }
 `;
 
 export function NavItems() {
-    const isMobile= useMediaQuery({maxWidth: SCREENS.sm })
-    if(isMobile)
+  const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
+  const location = useLocation(); // Get current location
 
+  if (isMobile)
     return (
-        <Menu right styles={menuStyles}>
+      <Menu right styles={menuStyles}>
         <ListContainer>
-          <NavItem  menu >
-            <a href="#">Home</a>
+          <NavItem menu isActive={location.pathname === "/"}> {/* Check if the current path is "/" */}
+            <Link to="/">Home</Link>
           </NavItem>
-          <NavItem menu >
-            <a href="#">Cars</a>
+          <NavItem menu isActive={location.pathname === "/cars"}> {/* Check if the current path is "/cars" */}
+            <Link to="/cars">Cars</Link>
           </NavItem>
-          <NavItem menu >
-            <a href="#">Services</a>
+          <NavItem menu isActive={location.pathname === "/services"}> {/* Check if the current path is "/services" */}
+            <Link to="/services">Services</Link>
           </NavItem>
-          <NavItem menu >
-            <a href="#">Contact Us</a>
+          <NavItem menu isActive={location.pathname === "/contact"}> {/* Check if the current path is "/contact" */}
+            <Link to="/contact">Contact</Link>
+          </NavItem>
+          <NavItem menu isActive={location.pathname === "/login"}> {/* Check if the current path is "/login" */}
+            <Link to="/login">Login</Link>
           </NavItem>
         </ListContainer>
-        </Menu>
+      </Menu>
     );
 
-    return (
-        <ListContainer>
-          <NavItem >
-            <a href="#">Home</a>
-          </NavItem>
-          <NavItem >
-            <a href="#">Cars</a>
-          </NavItem>
-          <NavItem >
-            <a href="#">Services</a>
-          </NavItem>
-          <NavItem >
-            <a href="#">Contact Us</a>
-          </NavItem>
-        </ListContainer>
-    );
+  // Desktop view with standard navigation
+  return (
+    <ListContainer>
+      <NavItem isActive={location.pathname === "/"}> {/* Check if the current path is "/" */}
+        <Link to="/">Home</Link>
+      </NavItem>
+      <NavItem isActive={location.pathname === "/cars"}> {/* Check if the current path is "/cars" */}
+        <Link to="/cars">Cars</Link>
+      </NavItem>
+      <NavItem isActive={location.pathname === "/services"}> {/* Check if the current path is "/services" */}
+        <Link to="/services">Services</Link>
+      </NavItem>
+      <NavItem isActive={location.pathname === "/contact"}> {/* Check if the current path is "/contact" */}
+        <Link to="/contact">Contact</Link>
+      </NavItem>
+      <NavItem isActive={location.pathname === "/login"}> {/* Check if the current path is "/login" */}
+        <Link to="/login">Login</Link>
+      </NavItem>
+    </ListContainer>
+  );
 }

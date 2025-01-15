@@ -3,18 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { Icar } from '../../../typings/car';
-import { Button } from '../button';
-
+import { Icar } from '../../../../typings/car';
+import { Button } from '../../../components/button';
+import { Link } from 'react-router-dom';
 
 interface IcarProps extends Icar {
 
 }
 
 const CarContainer = styled.div`
-width: 16.5em;  
-min-height: 20.2em;
-max-height: 25.2em;
+height: 25.2em;
 box-shadow: 0 1.3px 15px -2px rgba(0,0,0,0.4);
 transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
 ${tw`
@@ -26,8 +24,7 @@ pb-4
 bg-white  
 rounded-md   
 m-1 
-sm:m-3  
-md:m-6  
+mb-6  
 `}
  &:hover {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
@@ -37,12 +34,15 @@ md:m-6
 
 const CarThumbNail = styled.div`
 width: 100%;
-height: auto; 
+height: 70%; 
+display: flex;
+align-items: center;
+justify-content: center;
 
 img{
-    width: 100%; 
-    height: 100%  
+    width: auto; 
 }
+aspect-ratio: 16/9; /* Maintains a consistent aspect ratio */
 `
 const CarName = styled.h3`
 ${tw`
@@ -123,6 +123,13 @@ const RentButton = styled(Button)`
  `}
 `
 
+const RentButtonLink = styled(Link)`
+ ${tw` 
+ w-full  
+ `}
+ text-decoration: none;
+`
+
 
 export function Car(props: IcarProps) {
     const {name, thumbnailSrc, monthlyPrice, mileage, gearType, gas} = props;
@@ -156,7 +163,7 @@ export function Car(props: IcarProps) {
                     <CarInfo>{gas}</CarInfo>
                 </CarDetail>
                 </CarDetailsContainer>
-                    <RentButton text="Book Now"/>
+                    <RentButtonLink to={`/cars/${name}`}><RentButton text="Book Now"/></RentButtonLink>
         </CarContainer>
     )
 
