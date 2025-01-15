@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
+import { Link } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 import { registrationSchema } from "./RegistrationSchema";
 import img1 from "../../../../assets/images/login.png";
@@ -178,7 +179,7 @@ const Registration: React.FC = () => {
                       <div className="row mt-3">
                         <br />
                         <div className="col text-right">
-                          Already have an account? <a href="/login">Sign in</a>
+                          Already have an account? <Link to="/login">Sign in</Link>
                         </div>
                       </div>
                     </form>

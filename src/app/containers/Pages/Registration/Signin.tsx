@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
+import { Link } from 'react-router-dom';
 import * as Yup from "yup";
 import { Button } from "react-bootstrap";
 import img1 from "../../../../assets/images/login.png";
@@ -100,7 +101,7 @@ const Login: React.FC = () => {
                       <div className="row mt-3">
                         <br />
                         <div className="col text-right">
-                          Don't have an account? <a href="/registration">Sign up</a>
+                          Don't have an account? <Link to="/registration">Sign up</Link>
                         </div>
                       </div>
                     </form>
