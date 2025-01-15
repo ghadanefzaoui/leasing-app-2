@@ -100,7 +100,7 @@ const Login: React.FC = () => {
                       <div className="row mt-3">
                         <br />
                         <div className="col text-right">
-                          Don't have an account? <a href="/signup">Sign up</a>
+                          Don't have an account? <a href="/registration">Sign up</a>
                         </div>
                       </div>
                     </form>
