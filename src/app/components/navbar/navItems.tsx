@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import tw from "twin.macro";
-import { slide as Menu } from 'react-burger-menu';
-import { useMediaQuery } from 'react-responsive';
-import { SCREENS } from '../responsive';
-import menuStyles from "./menuStyles";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation hook to access the current location
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const ListContainer = styled.ul`
   ${tw`
     flex
     list-none
+    relative
   `};
 `;
 
@@ -37,63 +34,106 @@ const NavItem = styled.li<{ menu?: any, isActive: boolean }>`
   `}
   
   ${({ isActive }) => isActive && css`
-    color: rgba(239, 68, 68, 1); /* Apply active color */
+    color: rgba(239, 68, 68, 1); /* Active link color */
   `}
   
   a {
-    text-decoration: none; /* Removes underline */
-    color: inherit; /* Ensures link uses parent text color */
+    text-decoration: none;
+    color: inherit;
     &:hover {
-      color: inherit; /* Prevent hover color change */
+      color: inherit;
     }
   }
 `;
 
+const DropdownMenu = styled.div<{ isVisible: boolean }>`
+  ${tw`
+    flex
+    flex-col
+    bg-white
+    shadow-lg
+    p-3
+    rounded-lg
+  `};
+  z-index: 100;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+`;
+
+function useClickOutside(ref: React.RefObject<HTMLElement>, handler: Function) {
+  useEffect(() => {
+    const listener = (event: MouseEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
+        return;
+      }
+      handler(event);
+    };
+    document.addEventListener("mousedown", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+    };
+  }, [ref, handler]);
+}
+
 export function NavItems() {
-  const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
-  const location = useLocation(); // Get current location
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dropdownRef = useRef(null);
 
-  if (isMobile)
-    return (
-      <Menu right styles={menuStyles}>
-        <ListContainer>
-          <NavItem menu isActive={location.pathname === "/"}> {/* Check if the current path is "/" */}
-            <Link to="/">Home</Link>
-          </NavItem>
-          <NavItem menu isActive={location.pathname === "/cars"}> {/* Check if the current path is "/cars" */}
-            <Link to="/cars">Cars</Link>
-          </NavItem>
-          <NavItem menu isActive={location.pathname === "/services"}> {/* Check if the current path is "/services" */}
-            <Link to="/services">Services</Link>
-          </NavItem>
-          <NavItem menu isActive={location.pathname === "/contact"}> {/* Check if the current path is "/contact" */}
-            <Link to="/contact">Contact</Link>
-          </NavItem>
-          <NavItem menu isActive={location.pathname === "/login"}> {/* Check if the current path is "/login" */}
-            <Link to="/login">Login</Link>
-          </NavItem>
-        </ListContainer>
-      </Menu>
-    );
+  // Check for login status when component mounts
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true); // If token exists, set login state
+    }
+  }, []); // This ensures it runs only once when the component mounts
 
-  // Desktop view with standard navigation
+  const handleLogin = () => {
+    localStorage.setItem("token", "dummy-token"); // Set token after login
+    setIsLoggedIn(true); // Immediately update state
+    navigate("/dashboard");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false); // Update state immediately
+    setDropdownVisible(false); // Close dropdown
+    navigate("/login"); // Redirect to login page
+  };
+
+  const toggleDropdown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setDropdownVisible((prevState) => !prevState);
+  };
+
+  useClickOutside(dropdownRef, () => setDropdownVisible(false));
+
   return (
     <ListContainer>
-      <NavItem isActive={location.pathname === "/"}> {/* Check if the current path is "/" */}
-        <Link to="/">Home</Link>
-      </NavItem>
-      <NavItem isActive={location.pathname === "/cars"}> {/* Check if the current path is "/cars" */}
-        <Link to="/cars">Cars</Link>
-      </NavItem>
-      <NavItem isActive={location.pathname === "/services"}> {/* Check if the current path is "/services" */}
-        <Link to="/services">Services</Link>
-      </NavItem>
-      <NavItem isActive={location.pathname === "/contact"}> {/* Check if the current path is "/contact" */}
-        <Link to="/contact">Contact</Link>
-      </NavItem>
-      <NavItem isActive={location.pathname === "/login"}> {/* Check if the current path is "/login" */}
-        <Link to="/login">Login</Link>
-      </NavItem>
+      <NavItem isActive={location.pathname === "/"}><Link to="/">Home</Link></NavItem>
+      <NavItem isActive={location.pathname === "/cars"}><Link to="/cars">Cars</Link></NavItem>
+      <NavItem isActive={location.pathname === "/services"}><Link to="/services">Services</Link></NavItem>
+      <NavItem isActive={location.pathname === "/contact"}><Link to="/contact">Contact</Link></NavItem>
+
+      {/* Conditional rendering of Login or Dropdown */}
+      {!isLoggedIn ? (
+        <NavItem isActive={location.pathname === "/login"} onClick={handleLogin}>
+          <Link to="#">Login</Link> {/* Prevent navigation to keep it in the button */}
+        </NavItem>
+      ) : (
+        <NavItem isActive={location.pathname === "/dashboard"} onClick={toggleDropdown}>
+          <Link to="#">User Menu</Link> {/* Prevent navigation on click */}
+          <DropdownMenu ref={dropdownRef} isVisible={dropdownVisible}>
+            <NavItem isActive={location.pathname === "/client-space"}><Link to="/client-space">Client Space</Link></NavItem>
+            <NavItem isActive={location.pathname === "/notifications"}><Link to="/notifications">Notifications</Link></NavItem>
+            <NavItem isActive={false} onClick={handleLogout}>Logout</NavItem>
+          </DropdownMenu>
+        </NavItem>
+      )}
     </ListContainer>
   );
 }

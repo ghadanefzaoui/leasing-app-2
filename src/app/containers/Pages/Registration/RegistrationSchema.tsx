@@ -9,4 +9,9 @@ export const registrationSchema = Yup.object({
   repassword: Yup.string()
     .required("Confirm password is required")
     .oneOf([Yup.ref("password"), ""], "Password must match"),
+  // Phone number input field Control: HYACO_19012025_New
+    phone: Yup.string()
+  .matches(/^\d{8}$/, "Phone number must be exactly 8 digits")
+  .required("Phone is required"),
+
 });

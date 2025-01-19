@@ -5,25 +5,36 @@ import { Button } from "react-bootstrap";
 import { registrationSchema } from "./RegistrationSchema";
 import img1 from "../../../../assets/images/login.png";
 import "./style.css";
+import axios from "axios";
+
+
+
 
 // Define types for form values
 interface FormValues {
   first: string;
   last: string;
   email: string;
+  phone: string;
+  address: string;
   password: string;
   repassword: string;
+  role: "user",
 }
 
 const initialValues: FormValues = {
   first: "",
   last: "",
   email: "",
+  phone: "",
+  address: "",
   repassword: "",
   password: "",
+  role: "user",
 };
 
 const Registration: React.FC = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
   const {
     values,
     errors,
@@ -35,12 +46,41 @@ const Registration: React.FC = () => {
   } = useFormik<FormValues>({
     initialValues,
     validationSchema: registrationSchema,
-    onSubmit: (values, action) => {
-      alert(
-        "Form is valid now!. You can make a call to API inside onSubmit function"
-      );
-      action.resetForm();
+
+    onSubmit: async (values, action) => {
+      setIsLoading(true);  // Set loading state to true before API call
+      try {
+        const response = await axios.post("http://localhost:5000/api/auth/signup", {
+          first_name: values.first,
+          last_name: values.last,
+          email: values.email,
+          phone: values.phone,
+          address: values.address,
+          password: values.password,
+          role: values.role,
+        });
+    
+        if (response.status === 201) {
+          alert("Registration successful!");
+          action.resetForm();
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        console.log(error); // Log the entire error to understand it better
+        if (axios.isAxiosError(error) && error.response) {
+          alert(`Error: ${error.response.data.message || "Failed to register"}`);
+        } else {
+          alert("An unexpected error occurred. Please try again.");
+        }
+      }
+      finally {
+        setIsLoading(false);  // Reset loading state once done
+      }
     },
+    
+
+    
   });
 
   return (
@@ -115,6 +155,55 @@ const Registration: React.FC = () => {
                           ) : null}
                         </div>
                       </div>
+                        {/* // Phone number input field : HYACO_19012025_New */}
+                        <div className="row mt-3">
+                      <div className="col text-left">
+                        <label htmlFor="phone" className="form-label">
+                          Phone
+                        </label>
+                        <input
+                          id="phone"
+                          name="phone"
+                          className="form-control"
+                          value={values.phone}
+                          onChange={(e) => {
+                            const regex = /^[0-9]*$/; // Allow only numbers
+                            if (regex.test(e.target.value)) {
+                              handleChange(e);
+                            }
+                          }}
+                          onBlur={handleBlur}
+                          maxLength={8} // Limit input to 8 characters
+                        />
+                        {errors.phone && touched.phone ? (
+                          <small className="text-danger mt-1">
+                            {errors.phone}
+                          </small>
+                        ) : null}
+                      </div>
+                    </div>
+
+                      {/* // Address number input field : HYACO_19012025_New */}
+                      <div className="row mt-3">
+                        <div className="col text-left">
+                          <label htmlFor="address" className="form-label">
+                          Address
+                          </label>
+                          <input
+                            id="address"
+                            name="address"
+                            className="form-control"
+                            value={values.address}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                          {errors.address && touched.address ? (
+                            <small className="text-danger mt-1">
+                              {errors.address}
+                            </small>
+                          ) : null}
+                        </div>
+                      </div>
                       <div className="row mt-3">
                         <div className="col text-left">
                           <label htmlFor="password" className="form-label">
@@ -166,14 +255,17 @@ const Registration: React.FC = () => {
                           >
                             Clear
                           </Button>
-
+                          {/* // Updated submit button with loading handling : HYACO_19012025_New */}
                           <Button
-                            className="btn-login"
-                            size="sm"
-                            type="submit"
-                          >
-                            Register
-                          </Button>
+                          className="btn-login"
+                          size="sm"
+                          type="submit"
+                          disabled={isLoading}
+                        >
+                          {isLoading ? "Registering..." : "Register"}
+                        </Button>
+
+
                         </div>
                       </div>
                       <div className="row mt-3">

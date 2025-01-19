@@ -8,6 +8,8 @@ import 'aos/dist/aos.css';
 import { Navbar } from "./app/components/navbar";
 import { Footer } from "./app/components/footer";
 import RoutesConfig from "./router";
+import ProtectedRoute from "./app/components/ProtectedRoute"; // HYACO_0119_AuthGard
+
 
 const AppContainer = styled.div`
 ${tw`

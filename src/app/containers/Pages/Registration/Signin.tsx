@@ -1,10 +1,12 @@
 import React from "react";
 import { useFormik } from "formik";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Button } from "react-bootstrap";
 import img1 from "../../../../assets/images/login.png";
+import axios from "axios"; // Import Axios
 import "./style.css";
+import { useEffect } from "react";
 
 // Yup schema for validating the login form
 const loginSchema = Yup.object({
@@ -13,6 +15,8 @@ const loginSchema = Yup.object({
 });
 
 const Login: React.FC = () => {
+  const navigate = useNavigate(); // For redirection after successful login
+
   const {
     values,
     errors,
@@ -23,12 +27,29 @@ const Login: React.FC = () => {
   } = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      console.log("User logged in with: ", values);
-      // Here you can call the API to log the user in
+    onSubmit: async (values) => {
+      try {
+        // Call the login API here
+        const response = await axios.post("http://localhost:5000/api/auth/login", values);
+
+        if (response.data.token) {
+          // Store the token in localStorage (or any other method like Context or Redux)
+          localStorage.setItem("token", response.data.token);
+          
+          // Redirect user to a different page after successful login
+          navigate("/dashboard"); // Change to your preferred route
+        }
+      } catch (error) {
+        console.error("Error during login: ", error);
+        alert("Login failed, please try again.");
+      }
     },
   });
-
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/dashboard"); // Redirect to dashboard if already logged in
+    }
+  }, [navigate]);
   return (
     <div className="w-100">
       <section
