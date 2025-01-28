@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Button } from "react-bootstrap";
 import img1 from "../../../../assets/images/login.png";
-import axios from "axios"; // Import Axios
+import axios from "axios";
 import "./style.css";
 import { useEffect } from "react";
 
@@ -15,7 +15,7 @@ const loginSchema = Yup.object({
 });
 
 const Login: React.FC = () => {
-  const navigate = useNavigate(); // For redirection after successful login
+  const navigate = useNavigate();
 
   const {
     values,
@@ -29,15 +29,22 @@ const Login: React.FC = () => {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
-        // Call the login API here
-        const response = await axios.post("http://localhost:5000/api/auth/login", values);
+        const response = await axios.post(
+          "http://localhost:5000/api/auth/login",
+          values
+        );
 
         if (response.data.token) {
-          // Store the token in localStorage (or any other method like Context or Redux)
           localStorage.setItem("token", response.data.token);
-          
-          // Redirect user to a different page after successful login
-          navigate("/dashboard"); // Change to your preferred route
+
+          // Redirect based on email
+          if (values.email === "houssem.yacoubii@gmail.com") {
+            window.location.href = "http://localhost:3001"; // Admin URL
+          } else if (values.email === "ghada.nefzaoui@gmail.com" || values.email === "Aryna.Sabalenka@gmail.com") {
+            window.location.href = "http://localhost:3002"; // client URL
+          } else {
+            navigate("/dashboard");
+          }
         }
       } catch (error) {
         console.error("Error during login: ", error);
@@ -45,11 +52,13 @@ const Login: React.FC = () => {
       }
     },
   });
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      navigate("/dashboard"); // Redirect to dashboard if already logged in
+      navigate("/dashboard");
     }
   }, [navigate]);
+
   return (
     <div className="w-100">
       <section
@@ -122,7 +131,8 @@ const Login: React.FC = () => {
                       <div className="row mt-3">
                         <br />
                         <div className="col text-right">
-                          Don't have an account? <Link to="/registration">Sign up</Link>
+                          Don't have an account?{" "}
+                          <Link to="/registration">Sign up</Link>
                         </div>
                       </div>
                     </form>
