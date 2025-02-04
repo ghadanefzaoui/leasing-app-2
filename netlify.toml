@@ -1,4 +1,0 @@
-# netlify.toml configuration file
-
-[build]
-  command = "yarn install && yarn build" 
